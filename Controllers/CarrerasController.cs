@@ -6,29 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-/*
-namespace AplicacionAcademica
-{
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CarrerasController : ControllerBase
-    {
-        [HttpGet]
-        public IEnumerable<Carrera> GetCarreras()
-        {
-            using (var context = new sistema_academicoContext())
-            {
-                var listaCarreras = context.Carreras.ToList();
-                foreach (var carrera in listaCarreras)
-                {
-                    Console.WriteLine(carrera.Nombre);
-                }
-                return listaCarreras;
-            }
-        }
-    }
-}
-*/
+
 namespace AplicacionAcademica
 {
     [Route("api/[controller]")]

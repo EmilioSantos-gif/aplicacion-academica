@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f1f1f1;
+  }
+  
+  .menu-estudiante {
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .menu-header {
+    background-color: #3f51b5;
+    border-radius: 10px 10px 0 0;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .menu-estudiante h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
+  
+  .info-usuario,
+  .info-record {
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .info-usuario p,
+  .info-record p {
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #666;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .info-usuario span,
+  .info-record span {
+    font-weight: bold;
+    color: #3f51b5;
+    margin-right: 5px;
+  }
+  
+  .indice-chart {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .menu-estudiante {
+      padding: 10px;
+    }
+  
+    .menu-estudiante h2 {
+      font-size: 20px;
+    }
+  
+    .info-usuario p,
+    .info-record p {
+      font-size: 16px;
+    }
+  }
+  
