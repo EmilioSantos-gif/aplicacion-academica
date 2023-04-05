@@ -314,6 +314,8 @@ namespace AplicacionAcademica.Models
 
                 entity.Property(e => e.CantidadTrimestres).HasColumnName("cantidad_trimestres");
 
+                entity.Property(e => e.Carrera).HasColumnName("carrera");
+
                 entity.Property(e => e.CreditosAcumulados).HasColumnName("creditos_acumulados");
 
                 entity.Property(e => e.IdEstudiante).HasColumnName("id_estudiante");
@@ -321,6 +323,11 @@ namespace AplicacionAcademica.Models
                 entity.Property(e => e.Indice)
                     .HasColumnType("decimal(3, 2)")
                     .HasColumnName("indice");
+
+                entity.HasOne(d => d.CarreraNavigation)
+                    .WithMany(p => p.RecordGenerals)
+                    .HasForeignKey(d => d.Carrera)
+                    .HasConstraintName("FK__Record_Ge__carre__14270015");
 
                 entity.HasOne(d => d.IdEstudianteNavigation)
                     .WithOne(p => p.RecordGeneral)

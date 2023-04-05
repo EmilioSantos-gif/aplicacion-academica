@@ -11,6 +11,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 export default function MenuEstudiante(props) {
   const { usuario } = props;
   const [recordGeneral, setRecordGeneral] = useState(null);
+  const [carrera, setCarrera] = useState(null)
 
   console.log("usuario===>", usuario);
 
@@ -23,6 +24,17 @@ export default function MenuEstudiante(props) {
         const data = await response.json();
         console.log("recordgeneral====>", data);
         setRecordGeneral(data);
+        
+        try {
+          const carreraResponse = await fetch(`https://localhost:44360/api/carreras/${data.carrera}`);
+          const carreraData = await carreraResponse.json();
+  
+          console.log("carrera====>", carreraData);
+          setCarrera(carreraData);
+        } catch (error) {
+          console.log("error en fetch carrera===>", error)
+        }
+
       } catch (error) {
         console.error(error);
       }
@@ -55,45 +67,52 @@ export default function MenuEstudiante(props) {
           <h2>Récord General</h2>
         </div>
         {recordGeneral && <div class="info-record">
-          <p><span>Carrera:</span> {recordGeneral.carrera}</p>
-          <p><span>Índice General:</span> {recordGeneral.indice}</p>
+          {carrera && <p><span>Carrera:</span> {carrera.nombre}</p>}
           <p><span>Créditos Acumulados:</span> {recordGeneral.creditosAcumulados}</p>
           <p><span>Asignaturas Aprobadas:</span> {recordGeneral.asignaturasAprobadas}</p>
           <p><span>Cantidad de Trimestres:</span> {recordGeneral.cantidadTrimestres}</p>
+          <p><span>Índice General:</span> {recordGeneral.indice}</p>
         </div>}
         <div className="indice-chart">
-        <Doughnut
-  data={indiceData}
-  options={{
-    cutout: '75%',
-    plugins: {
-      tooltip: {
-        enabled: false,
-      },
-      legend: {
-        display: false,
-      },
-      afterDraw: function (chart, args, options) {
-        var width = chart.width,
-          height = chart.height,
-          ctx = chart.ctx;
+          {recordGeneral && <Doughnut
+          data={{
+            labels: ['Índice General', 'Faltante'],
+            datasets: [
+              {
+                data: [recordGeneral.indice, 4 - recordGeneral.indice],
+                backgroundColor: ['#36A2EB', '#E0E0E0'],
+              },
+            ],
+          }}
+          options={{
+            cutout: '75%',
+            plugins: {
+              tooltip: {
+                enabled: false,
+              },
+              legend: {
+                display: false,
+              },
+              afterDraw: function (chart, args, options) {
+                var width = chart.width,
+                  height = chart.height,
+                  ctx = chart.ctx;
 
-        ctx.restore();
-        ctx.font = "bold 20px Arial";
-        ctx.textBaseline = "middle";
-        ctx.fillStyle = "#666";
+                ctx.restore();
+                ctx.font = "bold 20px Arial";
+                ctx.textBaseline = "middle";
+                ctx.fillStyle = "#666";
 
-        var text = (indiceData.datasets[0].data[0] * 100).toFixed(0) + "%",
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2;
+                var text = (indiceData.datasets[0].data[0] * 100).toFixed(0) + "%",
+                  textX = Math.round((width - ctx.measureText(text).width) / 2),
+                  textY = height / 2;
 
-        ctx.fillText(text, textX, textY);
-        ctx.save();
-      },
-    },
-  }}
-/>
-
+                ctx.fillText(text, textX, textY);
+                ctx.save();
+              },
+            },
+          }}
+          />}
         </div>
     </div>
 </div>

@@ -10,6 +10,7 @@ namespace AplicacionAcademica.Models
         public Carrera()
         {
             CarreraAsignaturas = new HashSet<CarreraAsignatura>();
+            RecordGenerals = new HashSet<RecordGeneral>();
         }
 
         public int Id { get; set; }
@@ -19,5 +20,6 @@ namespace AplicacionAcademica.Models
 
         public virtual AreaAcademica IdAreaAcademicaNavigation { get; set; }
         public virtual ICollection<CarreraAsignatura> CarreraAsignaturas { get; set; }
+        public virtual ICollection<RecordGeneral> RecordGenerals { get; set; }
     }
 }

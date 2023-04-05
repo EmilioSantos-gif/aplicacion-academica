@@ -13,7 +13,9 @@ namespace AplicacionAcademica.Models
         public int? CreditosAcumulados { get; set; }
         public int? AsignaturasAprobadas { get; set; }
         public int? CantidadTrimestres { get; set; }
+        public int? Carrera { get; set; }
 
+        public virtual Carrera CarreraNavigation { get; set; }
         public virtual Usuario IdEstudianteNavigation { get; set; }
     }
 }
