@@ -1,0 +1,60 @@
+.editar-area-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editar-area-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #3f51b5;
+    text-align: center;
+  }
+  
+  .editar-area-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .editar-area-container label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+    color: #666;
+  }
+  
+  .editar-area-container input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .editar-area-container button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+    background-color: #3f51b5;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .editar-area-container button:hover {
+    background-color: #283593;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .editar-area-container {
+      padding: 10px;
+    }
+  }
+  

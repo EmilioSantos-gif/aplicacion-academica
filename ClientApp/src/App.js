@@ -38,7 +38,13 @@ import MenuEstudiante from './components/estudiante/MenuEstudiante'
 
 import { useState } from "react";
 
+import Navbar from './components/Navbar';
 
+import MantenimientoAsignaturas from './components/administrador/MantenimientoAsignaturas'
+import MenuAdministrador from './components/administrador/MenuAdministrador'
+import MantenimientoAreaAcademica from './components/administrador/MantenimientoAreaAcademica'
+import CrearAreaAcademica from './components/administrador/CrearAreaAcademica'
+import EditarAreaAcademica from './components/administrador/EditarAreaAcademica'
 //Poner layout debajo de router
 
 function App() {
@@ -49,13 +55,20 @@ function App() {
   };
 
   return (
+    <>
     <Router>
         <Routes>
-          <Route exact path="/" element={<Home/>} />
+          <Route exact path="/" element={<Login onUserAuthenticated={handleUserAuthenticated}/>} />
           <Route exact path="/login" element={<Login onUserAuthenticated={handleUserAuthenticated}/>} />
           <Route exact path="/estudiante" element={<MenuEstudiante usuario={usuarioAutenticado}/>} />
+          <Route exact path="/administrador" element={<MenuAdministrador usuario={usuarioAutenticado}/>} />
+          <Route exact path="/mantenimiento-asignaturas" element={<MantenimientoAsignaturas />} />
+          <Route exact path="/mantenimiento-areas" element={<MantenimientoAreaAcademica />} />
+          <Route exact path="/areasAcademicas/create" element={<CrearAreaAcademica />} />
+          <Route path="/areasAcademicas/edit/:id" element={<EditarAreaAcademica />} />
         </Routes>
     </Router>
+    </>
   );
 }
 

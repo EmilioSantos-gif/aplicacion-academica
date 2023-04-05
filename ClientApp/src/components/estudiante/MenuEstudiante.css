@@ -62,8 +62,11 @@
   }
   
   .indice-chart {
-    margin-top: 20px;
-    text-align: center;
+    position: relative;
+    top: 20px;
+    right: 20px;
+    width: 150px;
+    height: 150px;
   }
   
   @media screen and (max-width: 600px) {

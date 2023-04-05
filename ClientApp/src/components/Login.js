@@ -123,8 +123,8 @@ const Login = ({ onUserAuthenticated }) => {
             navigate('/estudiante');
         } else if (usuarioData.rol == 2){
             navigate('/maestro');
-        } else if (usuarioData.rol == 3){
-            navigate('/admin');
+        } else if (usuarioData.rol == 4){
+            navigate('/administrador');
         }
 
       } else {

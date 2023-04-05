@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./MenuEstudiante.css";
 import axios from "axios";
-import { Pie } from "react-chartjs-2";
+import { Doughnut  } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import Sidebar from './Sidebar';
+import Navbar from '../Navbar';
 
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function MenuEstudiante(props) {
   const { usuario } = props;
@@ -52,20 +55,52 @@ export default function MenuEstudiante(props) {
           <h2>Récord General</h2>
         </div>
         {recordGeneral && <div class="info-record">
+          <p><span>Carrera:</span> {recordGeneral.carrera}</p>
           <p><span>Índice General:</span> {recordGeneral.indice}</p>
           <p><span>Créditos Acumulados:</span> {recordGeneral.creditosAcumulados}</p>
           <p><span>Asignaturas Aprobadas:</span> {recordGeneral.asignaturasAprobadas}</p>
           <p><span>Cantidad de Trimestres:</span> {recordGeneral.cantidadTrimestres}</p>
         </div>}
+        <div className="indice-chart">
+        <Doughnut
+  data={indiceData}
+  options={{
+    cutout: '75%',
+    plugins: {
+      tooltip: {
+        enabled: false,
+      },
+      legend: {
+        display: false,
+      },
+      afterDraw: function (chart, args, options) {
+        var width = chart.width,
+          height = chart.height,
+          ctx = chart.ctx;
+
+        ctx.restore();
+        ctx.font = "bold 20px Arial";
+        ctx.textBaseline = "middle";
+        ctx.fillStyle = "#666";
+
+        var text = (indiceData.datasets[0].data[0] * 100).toFixed(0) + "%",
+          textX = Math.round((width - ctx.measureText(text).width) / 2),
+          textY = height / 2;
+
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+      },
+    },
+  }}
+/>
+
+        </div>
     </div>
 </div>
   );
 }
 
 /*
-      <div className="indice-chart">
-        <Pie data={indiceData} />
-      </div>
       
       
       

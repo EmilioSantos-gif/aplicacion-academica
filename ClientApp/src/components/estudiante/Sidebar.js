@@ -19,3 +19,13 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
+
+/*
+import { Link } from 'react-router-dom';
+
+<li><Link to="/grades">Ver notas</Link></li>
+<li><Link to="/record">Ver historial académico</Link></li>
+<li><Link to="/select">Seleccionar materias</Link></li>
+<li><Link to="/retire">Retirar materias</Link></li>
+<li><Link to="/logout">Cerrar sesión</Link></li>
+*/
