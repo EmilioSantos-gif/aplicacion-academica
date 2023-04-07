@@ -15,12 +15,12 @@ const SidebarAdministrador = () => {
       <nav>
         <ul>
           <li onClick={() => handleNavigateComponent('mantenimiento-asignaturas')}>Mantenimiento Asignaturas</li>
-          <li><a href="#record">Mantenimiento Usuarios</a></li>
-          <li><a href="#select">Mantenimiento Secciones</a></li>
+          <li onClick={() => handleNavigateComponent('mantenimiento-usuarios')}>Mantenimiento Usuarios</li>
+          <li onClick={() => handleNavigateComponent('mantenimiento-secciones')}>Mantenimiento Secciones</li>
           <li><a href="#retire">Mantenimiento Selecciones</a></li>
-          <li><a href="#logout">Mantenimiento Carreras</a></li>
+          <li onClick={() => handleNavigateComponent('mantenimiento-carreras')}>Mantenimiento Carreras</li>
           <li onClick={() => handleNavigateComponent('mantenimiento-areas')}>Mantenimiento Areas Académias</li>
-          <li><a href="#logout">Mantenimiento Aulas</a></li>
+          <li onClick={() => handleNavigateComponent('mantenimiento-aulas')}>Mantenimiento Aulas</li>
         </ul>
       </nav>
     </div>

@@ -53,6 +53,31 @@
   .crear-area-container button:hover {
     background-color: #283593;
   }
+
+  /* src/components/CrearAreaAcademica.css */
+
+/* ... */
+.crear-area-container select {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7em top 50%;
+  background-size: 8px;
+}
+
+.crear-area-container select:focus {
+  outline: none;
+  border-color: #3f51b5;
+}
+/* ... */
+
   
   @media screen and (max-width: 600px) {
     .crear-area-container {

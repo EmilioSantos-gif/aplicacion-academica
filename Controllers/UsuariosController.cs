@@ -51,6 +51,22 @@ namespace AplicacionAcademica.Controllers
             return usuario;
         }
 
+        // GET: api/Usuarios/rol/{rol}
+        [HttpGet("rol/{idRol}")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarioPorRol(int idRol)
+        {
+            var usuario = await _context.Usuarios.Where(u => u.Rol == idRol).ToListAsync();
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return usuario;
+        }
+
+
+
 
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)

@@ -9,8 +9,8 @@ namespace AplicacionAcademica.Models
     {
         public int Id { get; set; }
         public int? IdSeccion { get; set; }
-        public DateTime? DiaInicio { get; set; }
-        public DateTime? DiaFin { get; set; }
+        public TimeSpan? HoraInicio { get; set; }
+        public TimeSpan? HoraFin { get; set; }
 
         public virtual Seccion IdSeccionNavigation { get; set; }
     }

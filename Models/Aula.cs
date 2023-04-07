@@ -19,5 +19,3 @@ namespace AplicacionAcademica.Models
         public virtual ICollection<Seccion> Seccions { get; set; }
     }
 }
-
-//Scaffold-DbContext "Server=localhost; Database=sistema_academico; Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Force

@@ -102,7 +102,6 @@ namespace AplicacionAcademica.Models
                 entity.HasOne(d => d.IdAreaAcademicaNavigation)
                     .WithMany(p => p.Asignaturas)
                     .HasForeignKey(d => d.IdAreaAcademica)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Asignatur__id_ar__01142BA1");
             });
 

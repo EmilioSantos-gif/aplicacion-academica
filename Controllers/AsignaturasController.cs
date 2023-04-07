@@ -76,7 +76,7 @@ namespace AplicacionAcademica.Controllers
             _context.Asignaturas.Add(asignatura);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetAsignatura", new { id = asignatura.Id }, asignatura);
+            return CreatedAtAction(nameof(GetAsignatura), new { id = asignatura.Id }, asignatura);
         }
 
         // DELETE: api/Asignaturas/5
