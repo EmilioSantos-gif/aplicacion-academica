@@ -3,6 +3,12 @@ import axios from "axios";
 import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import './CrearSeccion.css';
+import Alert from '@mui/material/Alert';
+import { useNavigate } from 'react-router-dom';
+
+import { TimePicker } from '@mui/x-date-pickers/TimePicker'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
 
 const CrearSeccion = () => {
   const [codigo, setCodigo] = useState('');
@@ -15,21 +21,12 @@ const CrearSeccion = () => {
   const [asignaturas, setAsignaturas] = useState([]);
   const [maestros, setMaestros] = useState([]);
   const [aulas, setAulas] = useState([]);
-  const [periodos, setPeriodos] = useState([]);
+  const [periodos, setPeriodos] = useState([]);  
 
-  const [horarios, setHorarios] = useState([{ diaSemana: '', horaInicio: '', horaFin: '' }]);
+  const [error, setError] = useState(null);
 
-  const agregarHorario = () => {
-    setHorarios([...horarios, { diaSemana: '', horaInicio: '', horaFin: '' }]);
-  };
+  let navigate = useNavigate();
 
-  const actualizarHorario = (index, key, value) => {
-    const newHorarios = [...horarios];
-    newHorarios[index][key] = value;
-    setHorarios(newHorarios);
-  };
-  
-  
   useEffect(() => {
     fetchAsignaturas();
     fetchMaestros();
@@ -52,7 +49,7 @@ const CrearSeccion = () => {
     try {
       const response = await axios.get(`https://localhost:44360/api/usuarios/rol/${idRolMaestro}`);
       setMaestros(response.data);
-    } catch (error) {
+    } catch (error) { 
       console.error("Error fetching maestros:", error);
     }
   };
@@ -79,11 +76,11 @@ const CrearSeccion = () => {
     e.preventDefault();
     const nuevaSeccion = {
         codigo,
-        idAsignatura: idAsignatura?.id,
-        idMaestro: idMaestro?.id,
+        idAsignatura: idAsignatura,
+        idMaestro: idMaestro,
         capacidad,
-        aula: aula?.id,
-        periodo: periodo?.id,
+        aula: aula,
+        periodo: periodo,
         codigo
     };
 
@@ -92,11 +89,14 @@ const CrearSeccion = () => {
         navigate('/mantenimiento-secciones');
     } catch (error) {
         console.error('Error creating seccion:', error);
+        setError("No se pudo guardar la sección. Por favor, inténtalo de nuevo.");
+
     }
 };
 
   return (
     <div className="crear-seccion-container">
+      {error && <Alert severity="error">{error}</Alert>}
       <h1>Crear nueva sección</h1>
         <form onSubmit={handleSubmit}>
           <label>Asignatura:</label>
@@ -178,6 +178,28 @@ const CrearSeccion = () => {
               }
             }}
           />
+        <button className="submitButton" type="submit">Guardar</button>
+      </form>
+    </div>
+  );
+};
+
+export default CrearSeccion;
+
+/*
+
+  const [horarios, setHorarios] = useState([{ diaSemana: '', horaInicio: '', horaFin: '' }]);
+
+  const agregarHorario = () => {
+    setHorarios([...horarios, { diaSemana: '', horaInicio: '', horaFin: '' }]);
+  };
+
+  const actualizarHorario = (index, key, value) => {
+    const newHorarios = [...horarios];
+    newHorarios[index][key] = value;
+    setHorarios(newHorarios);
+  };
+
           {
           horarios.map((horario, index) => (
             <div key={index}>
@@ -193,18 +215,17 @@ const CrearSeccion = () => {
                 <option value="4">Jueves</option>
                 <option value="5">Viernes</option>
                 <option value="6">Sábado</option>
-                <option value="7">Domingo</option>
               </select>
 
               <label>Hora de inicio:</label>
-              <input
+              <input className="dtpInput"
                 type="time"
                 value={horario.horaInicio}
                 onChange={(e) => actualizarHorario(index, 'horaInicio', e.target.value)}
               />
 
               <label>Hora de fin:</label>
-              <input
+              <input className="dtpInput"
                 type="time"
                 value={horario.horaFin}
                 onChange={(e) => actualizarHorario(index, 'horaFin', e.target.value)}
@@ -212,12 +233,6 @@ const CrearSeccion = () => {
             </div>
           ))
         }
-        <button onClick={agregarHorario}>Agregar horario</button>
-        <button className="submitButton" type="submit">Guardar</button>
-      </form>
-    </div>
-  );
-};
+        <button className="horarioButton" onClick={agregarHorario}>Agregar horario</button>
 
-export default CrearSeccion;
-
+*/

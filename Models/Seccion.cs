@@ -20,7 +20,7 @@ namespace AplicacionAcademica.Models
         public byte? Capacidad { get; set; }
         public int? Aula { get; set; }
         public int Periodo { get; set; }
-        public DateTime FchRegistro { get; set; }
+        public DateTime? FchRegistro { get; set; }
 
         public virtual Aula AulaNavigation { get; set; }
         public virtual Asignatura IdAsignaturaNavigation { get; set; }

@@ -40,10 +40,32 @@
     background-color: #3f51b5;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin-top: 15px;
+  }
+
+  .crear-seccion-container button.horarioButton{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    color: #3f51b5;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: 1px solid #ddd;
+    border-color: #3f51b5;
+    margin-top: 8px;
+    margin-bottom: 15px;
   }
   
-  .crear-seccion-container button:hover {
+  .crear-seccion-container button.submitButton:hover {
     background-color: #283593;
+  }
+
+  .crear-seccion-container button.horarioButton:hover {
+    background-color: #283593;
+    color: #ffffff;
   }
 
 .crear-seccion-container select {
@@ -59,11 +81,22 @@
   background-repeat: no-repeat;
   background-position: right 0.7em top 50%;
   background-size: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .crear-seccion-container select:focus {
   outline: none;
   border-color: #3f51b5;
+}
+
+.dtpInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 8px;
 }
   
   @media screen and (max-width: 600px) {

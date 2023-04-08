@@ -66,7 +66,7 @@ const EditarUsuario = () => {
 
     try {
         const response = await axios.get('https://localhost:44360/api/roles/');
-        setRoles(response.data)
+        setRoles(response.data.$values)
       } catch (error) {
         console.error('Error fetching roles:', error);
       }

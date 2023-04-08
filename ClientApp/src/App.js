@@ -62,6 +62,7 @@ import EditarUsuario from './components/administrador/usuario/EditarUsuario'
 import MantenimientoSeccion from './components/administrador/seccion/MantenimientoSeccion'
 import CrearSeccion from './components/administrador/seccion/CrearSeccion'
 import EditarSeccion from './components/administrador/seccion/EditarSeccion'
+import HorarioSeccion from './components/administrador/seccion/HorarioSeccion'
 
 function App() {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState(null);
@@ -102,6 +103,7 @@ function App() {
           <Route exact path="/mantenimiento-secciones" element={<MantenimientoSeccion />} />
           <Route exact path="/secciones/create" element={<CrearSeccion />} />
           <Route path="/secciones/edit/:id" element={<EditarSeccion />} />
+          <Route path="/secciones/horario/:id" element={<HorarioSeccion />} />
 
         </Routes>
     </Router>

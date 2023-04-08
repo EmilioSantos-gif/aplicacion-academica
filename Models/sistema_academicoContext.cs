@@ -224,13 +224,15 @@ namespace AplicacionAcademica.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.DiaFin)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dia_fin");
+                entity.Property(e => e.DiaSemana).HasColumnName("dia_semana");
 
-                entity.Property(e => e.DiaInicio)
-                    .HasColumnType("datetime")
-                    .HasColumnName("dia_inicio");
+                entity.Property(e => e.HoraFin)
+                    .HasColumnType("time(0)")
+                    .HasColumnName("hora_fin");
+
+                entity.Property(e => e.HoraInicio)
+                    .HasColumnType("time(0)")
+                    .HasColumnName("hora_inicio");
 
                 entity.Property(e => e.IdSeccion).HasColumnName("id_seccion");
 

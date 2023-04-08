@@ -27,11 +27,39 @@ namespace AplicacionAcademica
             return await _context.Seccions.ToListAsync();
         }
 
+        // GET: api/Secciones
+        [HttpGet("related")]
+        public async Task<ActionResult<IEnumerable<Seccion>>> GetSeccionesWithRelatedEntities()
+        {
+            return await _context.Seccions
+                .Include(s => s.IdAsignaturaNavigation)
+                .Include(s => s.IdMaestroNavigation)
+                .Include(s => s.AulaNavigation)
+                .Include(s => s.PeriodoNavigation)
+                .ToListAsync();
+        }
+
         // GET: api/Secciones/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Seccion>> GetSeccion(int id)
         {
             var seccion = await _context.Seccions.FindAsync(id);
+
+            if (seccion == null)
+            {
+                return NotFound();
+            }
+
+            return seccion;
+        }
+
+        // GET: api/Secciones/5
+        [HttpGet("related/{id}")]
+        public async Task<ActionResult<Seccion>> GetSeccionWithRelatedEntities(int id)
+        {
+            var seccion = await _context.Seccions
+                .Include(s => s.IdMaestroNavigation)
+                .SingleOrDefaultAsync(s => s.Id == id);
 
             if (seccion == null)
             {

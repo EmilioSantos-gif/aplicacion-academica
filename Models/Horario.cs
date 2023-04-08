@@ -11,6 +11,7 @@ namespace AplicacionAcademica.Models
         public int? IdSeccion { get; set; }
         public TimeSpan? HoraInicio { get; set; }
         public TimeSpan? HoraFin { get; set; }
+        public int? DiaSemana { get; set; }
 
         public virtual Seccion IdSeccionNavigation { get; set; }
     }
