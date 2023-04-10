@@ -22,14 +22,14 @@ export default function HorarioSeccion() {
 
   const fetchHorarios = async () => {
     const response = await axios.get(`https://localhost:44360/api/horarios/seccion/${id}`)
-
+/*
     const horariosData = response.data.map(h => {
       h.horaInicio = formatTime(h.horaInicio);
       h.horaFin = formatTime(h.horaFin);
       return h;
     });
-
-    setHorarios(horariosData)
+*/
+    setHorarios(response.data)
   }
 
   function formatTime(timeObj) {

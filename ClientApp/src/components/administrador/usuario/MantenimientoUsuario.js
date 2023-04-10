@@ -16,7 +16,7 @@ const MantenimientoUsuario = () => {
         try {
           const response = await axios.get('https://localhost:44360/api/usuarios');
           console.log("responseUsuarios=====>",response)
-          setUsuarios(response.data.$values);
+          setUsuarios(response.data);
           console.log("usuarios=====>",usuarios)
 
         } catch (error) {
@@ -26,7 +26,7 @@ const MantenimientoUsuario = () => {
         try {
             const response = await axios.get(`https://localhost:44360/api/roles/`);
             console.log("responseRol=====>",response)
-            setRol(response.data.$values)
+            setRol(response.data)
             console.log("rol=====>",rol)
         } catch (error) {
             console.log("Error al recuperar roles", error)

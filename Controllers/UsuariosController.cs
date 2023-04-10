@@ -65,8 +65,22 @@ namespace AplicacionAcademica.Controllers
             return usuario;
         }
 
+        // GET: api/usuarios/honores
+        /*
+         * [HttpGet("honores")]
+        public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosConHonores()
+        {
+            {
+                var graduados = await _context.Usuarios.Include(u => u.RecordGeneral)
+                    .ThenInclude(rg => rg.Carrera)
+                    .Where(u => u.RecordGeneral.AsignaturasAprobadas == u.RecordGeneral.Carrera.AsignaturasRequeridas &&
+                                u.RecordGeneral.CreditosAprobados == u.RecordGeneral.Carrera.CreditosRequeridos)
+                    .ToListAsync();
 
-
+                return graduados;
+            }
+            
+        }*/
 
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
