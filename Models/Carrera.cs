@@ -17,6 +17,8 @@ namespace AplicacionAcademica.Models
         public string Nombre { get; set; }
         public string Codigo { get; set; }
         public int? IdAreaAcademica { get; set; }
+        public int Creditos { get; set; }
+        public int Asignaturas { get; set; }
 
         public virtual AreaAcademica IdAreaAcademicaNavigation { get; set; }
         public virtual ICollection<CarreraAsignatura> CarreraAsignaturas { get; set; }

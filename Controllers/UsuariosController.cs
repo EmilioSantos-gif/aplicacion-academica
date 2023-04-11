@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using System.Threading.Tasks;
 
 namespace AplicacionAcademica.Controllers
@@ -65,22 +66,48 @@ namespace AplicacionAcademica.Controllers
             return usuario;
         }
 
+
+
         // GET: api/usuarios/honores
-        /*
-         * [HttpGet("honores")]
+        [HttpGet("honores")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuariosConHonores()
         {
+            /*
             {
                 var graduados = await _context.Usuarios.Include(u => u.RecordGeneral)
                     .ThenInclude(rg => rg.Carrera)
-                    .Where(u => u.RecordGeneral.AsignaturasAprobadas == u.RecordGeneral.Carrera.AsignaturasRequeridas &&
-                                u.RecordGeneral.CreditosAprobados == u.RecordGeneral.Carrera.CreditosRequeridos)
+                    .Where(u => u.RecordGeneral.AsignaturasAprobadas == u.RecordGeneral.Carrera.Asignaturas &&
+                                u.RecordGeneral.CreditosAcumulados == u.RecordGeneral.Carrera.Creditos)
                     .ToListAsync();
 
                 return graduados;
             }
-            
-        }*/
+           
+            var graduados = await _context.Usuarios
+                .Include(u => u.RecordGeneral)
+                .ThenInclude(rg => rg.Carrera)
+                .Include(u => u.RecordGeneral)
+                .ThenInclude(rg => rg.Carrera.CarreraAsignaturas)
+                .ToListAsync();
+
+            return graduados.Where(u => u.RecordGeneral != null && u.RecordGeneral.Carrera != null &&
+                                        u.RecordGeneral.CreditosAprobados == u.RecordGeneral.Carrera.Creditos &&
+                                        u.RecordGeneral.AsignaturasAprobadas == u.RecordGeneral.Carrera.Asignaturas).ToList();
+
+ */
+            int idRolEstudiante = 1;
+            var graduados = await _context.Usuarios
+                .Include(u => u.RecordGeneral)
+                .ThenInclude(rg => rg.CarreraNavigation)
+                .Where(u => u.Rol == idRolEstudiante &&
+                            u.RecordGeneral.CreditosAcumulados >= u.RecordGeneral.CarreraNavigation.Creditos &&
+                            u.RecordGeneral.AsignaturasAprobadas >= u.RecordGeneral.CarreraNavigation.Asignaturas &&
+                            u.RecordGeneral.Indice >= 3.2m)
+                .ToListAsync();
+
+            return graduados;
+
+        }
 
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)

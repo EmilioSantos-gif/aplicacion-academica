@@ -28,6 +28,56 @@ namespace AplicacionAcademica
         }
 
         // GET: api/Secciones
+        [HttpGet("maestro/{idMaestro}")]
+        public async Task<ActionResult<IEnumerable<Object>>> GetSeccionesPorMaestro(int idMaestro)
+        {
+            return await _context.Seccions
+                .Include(s => s.IdAsignaturaNavigation)
+                .Include(s => s.AulaNavigation)
+                .Where(s => s.IdMaestro == idMaestro)
+                .Select(s => new { 
+                    s.Id,
+                    s.Codigo,
+                    Asignatura = s.IdAsignaturaNavigation.Nombre,
+                    s.Capacidad,
+                    Aula = s.AulaNavigation.Codigo
+                })
+                .ToListAsync();
+        }
+
+        [HttpGet("{idSeccion}/estudiantes")]
+        public async Task<ActionResult<IEnumerable<Object>>> GetUsuarioPorSeccion(int idSeccion)
+        {
+            /*
+            var estudiantes = await _context.Seccions
+                .Include(sec => sec.Seleccions)
+                .ThenInclude(sel => sel.IdEstudianteNavigation)
+                .Where(sec => sec.Id == idSeccion)
+                .Select(s => new
+                {
+                    s.Seleccions.
+                })
+                .ToListAsync();
+            */
+            int idEstadoEnCurso = 6;
+
+            var selecciones = await _context.Seleccions
+                .Include(sel => sel.IdEstudianteNavigation)
+                .Where(sel => sel.IdSeccion == idSeccion /*&& sel.Estado == idEstadoEnCurso*/)
+                .ToListAsync();
+                
+            if (selecciones == null)
+            {
+                return NotFound();
+            }
+
+            return selecciones;
+        }
+
+
+
+        // GET: api/Secciones
+        /*
         [HttpGet("related")]
         public async Task<ActionResult<IEnumerable<Seccion>>> GetSeccionesWithRelatedEntities()
         {
@@ -38,6 +88,8 @@ namespace AplicacionAcademica
                 .Include(s => s.PeriodoNavigation)
                 .ToListAsync();
         }
+
+        */
 
         // GET: api/Secciones/5
         [HttpGet("{id}")]

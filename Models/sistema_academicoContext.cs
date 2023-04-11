@@ -138,11 +138,15 @@ namespace AplicacionAcademica.Models
 
                 entity.Property(e => e.Id).HasColumnName("id");
 
+                entity.Property(e => e.Asignaturas).HasColumnName("asignaturas");
+
                 entity.Property(e => e.Codigo)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("codigo");
+
+                entity.Property(e => e.Creditos).HasColumnName("creditos");
 
                 entity.Property(e => e.IdAreaAcademica).HasColumnName("id_area_academica");
 

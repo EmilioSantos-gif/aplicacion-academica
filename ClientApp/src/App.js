@@ -1,35 +1,3 @@
-
-/*
-import React, { Component } from 'react';
-import { Route } from 'react-router';
-import { Layout } from './components/Layout';
-import { Home } from './components/Home';
-import { FetchData } from './components/FetchData';
-import { Counter } from './components/Counter';
-import { Login } from './components/Login';
-import MenuEstudiante from './components/MenuEstudiante'; // Asegúrate de usar la ruta correcta
-
-import './custom.css'
-
-
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
-    return (
-      <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data' component={FetchData} />
-        <Route path='/login' component={Login} />
-        <Route path="/estudiante" component={MenuEstudiante} />
-      </Layout>
-    );
-  }
-}
-*/
-
-//import { Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 import Login from './components/Login'
@@ -63,6 +31,12 @@ import MantenimientoSeccion from './components/administrador/seccion/Mantenimien
 import CrearSeccion from './components/administrador/seccion/CrearSeccion'
 import EditarSeccion from './components/administrador/seccion/EditarSeccion'
 import HorarioSeccion from './components/administrador/seccion/HorarioSeccion'
+
+import GraduadosHonores from './components/administrador/reporte/GraduadosHonores'
+
+import Secciones from './components/maestro/calificar/Secciones'
+import CalificarSeccion from './components/maestro/calificar/CalificarSeccion'
+
 
 function App() {
   const [usuarioAutenticado, setUsuarioAutenticado] = useState(null);
@@ -104,6 +78,11 @@ function App() {
           <Route exact path="/secciones/create" element={<CrearSeccion />} />
           <Route path="/secciones/edit/:id" element={<EditarSeccion />} />
           <Route path="/secciones/horario/:id" element={<HorarioSeccion />} />
+
+          <Route exact path="/graduados-honores" element={<GraduadosHonores />} />
+
+          <Route exact path="/secciones/maestro/:idMaestro" element={<Secciones />} />
+          <Route exact path="/secciones/calificar/:idSeccion" element={<CalificarSeccion />} />
 
         </Routes>
     </Router>

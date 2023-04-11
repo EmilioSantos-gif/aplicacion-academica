@@ -28,6 +28,7 @@ namespace AplicacionAcademica
                 options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
             });
             */
+
             services.AddControllersWithViews()
                  .AddNewtonsoftJson(options => options
                     .SerializerSettings

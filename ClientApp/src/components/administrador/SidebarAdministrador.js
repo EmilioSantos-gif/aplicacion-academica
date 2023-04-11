@@ -21,6 +21,7 @@ const SidebarAdministrador = () => {
           <li onClick={() => handleNavigateComponent('mantenimiento-carreras')}>Mantenimiento Carreras</li>
           <li onClick={() => handleNavigateComponent('mantenimiento-areas')}>Mantenimiento Areas Académias</li>
           <li onClick={() => handleNavigateComponent('mantenimiento-aulas')}>Mantenimiento Aulas</li>
+          <li onClick={() => handleNavigateComponent('graduados-honores')}>Graduados con honores</li>
         </ul>
       </nav>
     </div>
