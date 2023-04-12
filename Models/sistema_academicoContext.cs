@@ -422,6 +422,11 @@ namespace AplicacionAcademica.Models
                     .HasColumnName("fch_registro")
                     .HasDefaultValueSql("(getdate())");
 
+                entity.Property(e => e.Letra)
+                    .HasMaxLength(2)
+                    .HasColumnName("letra")
+                    .IsFixedLength(true);
+
                 entity.Property(e => e.Puntuacion)
                     .HasColumnType("decimal(2, 1)")
                     .HasColumnName("puntuacion");

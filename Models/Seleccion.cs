@@ -13,6 +13,7 @@ namespace AplicacionAcademica.Models
         public int Estado { get; set; }
         public int Periodo { get; set; }
         public DateTime? FchRegistro { get; set; }
+        public string Letra { get; set; }
 
         public virtual EstadoSeleccion EstadoNavigation { get; set; }
         public virtual Usuario IdEstudianteNavigation { get; set; }

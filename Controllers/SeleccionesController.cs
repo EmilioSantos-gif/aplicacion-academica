@@ -1,4 +1,5 @@
-﻿using AplicacionAcademica.Models;
+﻿using AplicacionAcademica.DTOs;
+using AplicacionAcademica.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,6 +77,33 @@ namespace AplicacionAcademica
                 {
                     throw;
                 }
+            }
+
+            return NoContent();
+        }
+
+        //metodo que reciba un id de seccion y un id de estudiante y le modifique la nota
+
+        [HttpPut("actualizar-puntuacion")]
+        public async Task<IActionResult> ActualizarPuntuacion([FromBody] ActualizarPuntuacionDTO actualizarPuntuacionDTO)
+        {
+            var seleccion = await _context.Seleccions
+                .FirstOrDefaultAsync(s => s.IdEstudiante == actualizarPuntuacionDTO.IdEstudiante && s.IdSeccion == actualizarPuntuacionDTO.IdSeccion);
+
+            if (seleccion == null)
+            {
+                return NotFound("La selección no se encontró para el estudiante y sección proporcionados.");
+            }
+
+            seleccion.Puntuacion = actualizarPuntuacionDTO.Puntuacion;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
             }
 
             return NoContent();
