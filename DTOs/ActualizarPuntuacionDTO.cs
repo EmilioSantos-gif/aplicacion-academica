@@ -9,6 +9,6 @@ namespace AplicacionAcademica.DTOs
     {
         public int IdEstudiante { get; set; }
         public int IdSeccion { get; set; }
-        public decimal? Puntuacion { get; set; }
+        public int? Puntuacion { get; set; }
     }
 }

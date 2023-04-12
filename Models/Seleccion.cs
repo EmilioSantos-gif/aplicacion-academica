@@ -9,7 +9,7 @@ namespace AplicacionAcademica.Models
     {
         public int IdEstudiante { get; set; }
         public int IdSeccion { get; set; }
-        public decimal? Puntuacion { get; set; }
+        public int? Puntuacion { get; set; }
         public int Estado { get; set; }
         public int Periodo { get; set; }
         public DateTime? FchRegistro { get; set; }

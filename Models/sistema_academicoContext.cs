@@ -427,9 +427,7 @@ namespace AplicacionAcademica.Models
                     .HasColumnName("letra")
                     .IsFixedLength(true);
 
-                entity.Property(e => e.Puntuacion)
-                    .HasColumnType("decimal(2, 1)")
-                    .HasColumnName("puntuacion");
+                entity.Property(e => e.Puntuacion).HasColumnName("puntuacion");
 
                 entity.HasOne(d => d.EstadoNavigation)
                     .WithMany(p => p.Seleccions)
